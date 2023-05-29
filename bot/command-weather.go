@@ -54,7 +54,7 @@ func getCurrentWeather(message string) *discordgo.MessageSend {
 
 	fmt.Println(geoURL)
 	// if strings.HasSuffix(geoURL, "\r") {
-	geoURL = geoURL[:len(geoURL)-1]
+	// geoURL = geoURL[:len(geoURL)-1]
 	// }
 
 	// make a client for getting location
