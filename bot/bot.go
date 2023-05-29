@@ -53,7 +53,7 @@ func newMessage(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	if strings.Contains(message.Content, "bot") {
 		discord.ChannelMessageSend(message.ChannelID, "Hi there!")
 	}
-	if strings.HasPrefix(message.Content, "!zip") {
+	if strings.HasPrefix(message.Content, "!weather") {
 		currentWeather := getCurrentWeather(message.Content)
 		discord.ChannelMessageSendComplex(message.ChannelID, currentWeather)
 	}
