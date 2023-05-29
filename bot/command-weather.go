@@ -91,7 +91,7 @@ func getCurrentWeather(message string) *discordgo.MessageSend {
 	weatherURL := fmt.Sprintf("%s%s&lon=%s&appid=%s", weatherURL, lat, lon, OpenWeatherToken)
 	weatherURL = weatherURL[:len(weatherURL)-1]
 	weatherURL = weatherURL + "&units=metric"
-	// fmt.Println(weatherURL)
+	fmt.Println(weatherURL)
 	weatherClient := http.Client{Timeout: 5 * time.Second}
 	weatherResponse, err := weatherClient.Get(weatherURL)
 
