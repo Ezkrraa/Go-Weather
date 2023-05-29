@@ -82,19 +82,16 @@ func getCurrentWeather(message string) *discordgo.MessageSend {
 			Content: "Sorry, there was an error trying to get the location",
 		}
 	}
-	fmt.Println(data)
+	// fmt.Println(data)
 	// grab latitude and longitude
 	lat := fmt.Sprintf("%f", data[0].Lat)
 	lon := fmt.Sprintf("%f", data[0].Lon)
 
 	// use lat and lon to get weather data for that location
-	weatherURL := fmt.Sprintf("%s%s&lon=%s&appid=%s", weatherURL, lat, lon, OpenWeatherToken)
-	weatherURL = weatherURL[:len(weatherURL)-1]
-	weatherURL = weatherURL + "&units=metric"
-	fmt.Println(weatherURL)
+	weatherURL := fmt.Sprintf("%s%s&lon=%s&appid=%s%s", weatherURL, lat, lon, OpenWeatherToken, "&units=metric")
 	weatherClient := http.Client{Timeout: 5 * time.Second}
 	weatherResponse, err := weatherClient.Get(weatherURL)
-
+	// fmt.Println(weatherURL)
 	if err != nil {
 		fmt.Println(err)
 		return &discordgo.MessageSend{
@@ -107,9 +104,9 @@ func getCurrentWeather(message string) *discordgo.MessageSend {
 	var data2 WeatherData
 	json.Unmarshal([]byte(weatherBody), &data2)
 
-	fmt.Println(data2)
-	fmt.Println(data2.Weather)
-	fmt.Println(data2.Name)
+	// fmt.Println(data2)
+	// fmt.Println(data2.Weather)
+	// fmt.Println(data2.Name)
 
 	city := data2.Name
 	conditions := data2.Weather[0].Description
