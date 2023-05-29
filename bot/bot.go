@@ -47,12 +47,6 @@ func newMessage(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	case strings.Contains(message.Content, "bot"):
 		discord.ChannelMessageSend(message.ChannelID, "Hi there!")
 	}*/
-	if strings.Contains(message.Content, "weather") {
-		discord.ChannelMessageSend(message.ChannelID, "I can help with that!")
-	}
-	if strings.Contains(message.Content, "bot") {
-		discord.ChannelMessageSend(message.ChannelID, "Hi there!")
-	}
 	if strings.HasPrefix(message.Content, "!weather") {
 		currentWeather := getCurrentWeather(message.Content)
 		discord.ChannelMessageSendComplex(message.ChannelID, currentWeather)
