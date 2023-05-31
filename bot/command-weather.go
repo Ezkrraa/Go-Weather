@@ -52,7 +52,7 @@ func getCurrentWeather(message string) *discordgo.MessageSend {
 	location := message[9:]
 	geoURL := fmt.Sprintf("%s%s&limit=1&appid=%s", geoURL, location, OpenWeatherToken)
 
-	fmt.Println(geoURL)
+	fmt.Println(location)
 	// if strings.HasSuffix(geoURL, "\r") {
 	// geoURL = geoURL[:len(geoURL)-1]
 	// }
