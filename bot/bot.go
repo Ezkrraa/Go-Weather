@@ -48,7 +48,11 @@ func newMessage(discord *discordgo.Session, message *discordgo.MessageCreate) {
 		discord.ChannelMessageSend(message.ChannelID, "Hi there!")
 	}*/
 	if strings.HasPrefix(message.Content, "!weather") {
-		currentWeather := getCurrentWeather(message.Content)
-		discord.ChannelMessageSendComplex(message.ChannelID, currentWeather)
+		if len(message.Content) < 9 {
+			discord.ChannelMessageSendReply(message.ChannelID, "Please give a location for which you want the weather.", message.Reference())
+		} else {
+			currentWeather := getCurrentWeather(message.Content)
+			discord.ChannelMessageSendComplex(message.ChannelID, currentWeather)
+		}
 	}
 }
